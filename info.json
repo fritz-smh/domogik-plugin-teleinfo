@@ -1,0 +1,185 @@
+{
+    "json_version" : 2,
+    "identity": {
+        "author": "Fritz",
+        "author_email": "fritz.smh at gmail.com",
+        "tags": ["edf", "teleinfo", "electricity", "energy"],
+        "dependencies": [
+            {
+                "id": "pyserial (>=2.5)",
+                "type": "python"
+            }
+        ],
+        "description": "Grab teleinformation informations from your EDF electric counter",
+        "domogik_min_version": "0.4.0",
+        "name": "teleinfo",
+        "type": "plugin",
+        "version": "0.1"
+    },
+    "configuration": [],
+    "device_types": {
+        "teleinfo.teleinfo": {
+            "description": "Teleinformation",
+            "id": "teleinfo.teleinfo",
+            "name": "Teleinformation",
+            "commands": [],
+            "sensors": ["adco", "optarif", "isousc", "base", "iinst", "imax", "motdetat"],
+            "parameters": [
+                {
+                    "key": "device",
+                    "xpl": false,
+                    "description": "The teleinformation module device path (ex : /dev/ttyUSB0 for an usb model).",
+                    "type": "string"
+                },
+                {
+                    "key": "interval",
+                    "xpl": false,
+                    "description": "The time in seconds between each check.",
+                    "type": "integer"
+                }
+            ]
+        }
+    },
+    "sensors": {
+        "adco": {
+            "name": "Adresse du compteur",
+            "data_type": "DT_String",
+            "conversion": "",
+            "incremental": false,
+            "history": {
+                "store": true,
+                "duplicate": false,
+                "max": 0,
+                "expire": 0,
+                "round_value": 0
+            }
+        },
+        "optarif": {
+            "name": "Option tarifaire",
+            "data_type": "DT_String",
+            "conversion": "",
+            "incremental": false,
+            "history": {
+                "store": true,
+                "duplicate": false,
+                "max": 0,
+                "expire": 0,
+                "round_value": 0
+            }
+        },
+        "isousc": {
+            "name": "Intensité souscrite",
+            "data_type": "DT_Number",
+            "conversion": "",
+            "incremental": false,
+            "history": {
+                "store": true,
+                "duplicate": false,
+                "max": 0,
+                "expire": 0,
+                "round_value": 0
+            }
+        },
+        "base": {
+            "name": "Index option base",
+            "data_type": "DT_String",
+            "conversion": "",
+            "incremental": false,
+            "history": {
+                "store": true,
+                "duplicate": false,
+                "max": 0,
+                "expire": 0,
+                "round_value": 0
+            }
+        },
+        "iinst": {
+            "name": "Intensité instantanée",
+            "data_type": "DT_Number",
+            "conversion": "",
+            "incremental": false,
+            "history": {
+                "store": true,
+                "duplicate": false,
+                "max": 0,
+                "expire": 0,
+                "round_value": 0
+            }
+        },
+        "imax": {
+            "name": "Intensité maximale appelée",
+            "data_type": "DT_String",
+            "conversion": "",
+            "incremental": false,
+            "history": {
+                "store": true,
+                "duplicate": false,
+                "max": 0,
+                "expire": 0,
+                "round_value": 0
+            }
+        },
+        "motdetat": {
+            "name": "Mot d'état du compteur",
+            "data_type": "DT_String",
+            "conversion": "",
+            "incremental": false,
+            "history": {
+                "store": true,
+                "duplicate": false,
+                "max": 0,
+                "expire": 0,
+                "round_value": 0
+            }
+        }
+    },
+    "xpl_stats": {
+        "teleinfo": {
+            "name": "Teleinfo",
+            "schema": "teleinfo.basic",
+            "parameters": {
+                "static": [],
+                "device": [],
+                "dynamic": [
+                    {
+                         "key": "adco",
+                         "ignore_values": "",
+                         "sensor": "adco"
+                    },
+                    {
+                         "key": "optarif",
+                         "ignore_values": "",
+                         "sensor": "optarif"
+                    },
+                    {
+                         "key": "isousc",
+                         "ignore_values": "",
+                         "sensor": "isousc"
+                    },
+                    {
+                         "key": "base",
+                         "ignore_values": "",
+                         "sensor": "base"
+                    },
+                    {
+                         "key": "iinst",
+                         "ignore_values": "",
+                         "sensor": "iinst"
+                    },
+                    {
+                         "key": "imax",
+                         "ignore_values": "",
+                         "sensor": "imax"
+                    },
+                    {
+                         "key": "motdetat",
+                         "ignore_values": "",
+                         "sensor": "motdetat"
+                    }
+                ]
+            }
+        }
+    },
+    "commands": {},
+    "xpl_commands": {}
+}

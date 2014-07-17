@@ -41,6 +41,7 @@ from domogik.xpl.common.plugin import XplPlugin
 from domogik_packages.plugin_teleinfo.lib.teleinfo import Teleinfo, TeleinfoException
 import threading
 import traceback
+import re
 
 
 class TeleinfoManager(XplPlugin):
@@ -73,7 +74,7 @@ class TeleinfoManager(XplPlugin):
                 teleinfo_list[device].open()
 
                 # start the teleinfo thread
-                self.log.info(u"Start monitoring teleinfo device '%s'" % device)
+                self.log.info(u"Start monitoring teleinfo device '{0}'".format(device))
                 thr_name = "{0}".format(device)
                 threads[thr_name] = threading.Thread(None,
                                               teleinfo_list[device].listen,
@@ -102,8 +103,6 @@ class TeleinfoManager(XplPlugin):
         ''' Send a frame from teleinfo device to xpl
         @param frame : a dictionnary mapping teleinfo informations
         '''
-        print("FOOOOOOO")
-        return
         my_temp_message = XplMessage()
         my_temp_message.set_type("xpl-stat")
         if "ADIR1" in frame:
@@ -120,12 +119,13 @@ class TeleinfoManager(XplPlugin):
                 my_temp_message.add_data({ key : val })
             my_temp_message.add_data({"device": "teleinfo"})
         except :
-            self.log.warn("Message ignored : %s ; last key : %s ; last val : %s" % (my_temp_message, key, val))
+            self.log.error("Error while creating xpl message : {0} ; key : {1} ; val : {2}. Error is : {3}".format(my_temp_message, key, val, traceback.formar_exc()))
 
         try:
             self.myxpl.send(my_temp_message)
         except XplMessageError:
             #We ignore the message if some values are not correct because it can happen with teleinfo ...
+            self.log.debug("Bad xpl message to send. This may happen due to some invalid teleinfo data. Xpl message is : {0}".format(str(my_temp_message)))
             pass
 
 if __name__ == "__main__":

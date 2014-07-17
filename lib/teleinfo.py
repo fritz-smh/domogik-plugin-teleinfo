@@ -90,9 +90,9 @@ class Teleinfo:
         try:
             while not self._stop.isSet():
                 frame = self.read()
-                self.log.debug("Frame received : %s" % frame)
-                #self._callback(frame)
-                print(frame)
+                #self.log.debug("Frame received : {0}".format(frame))
+                self._callback(frame)
+                #print(frame)
                 self._stop.wait(self._interval)
         except serial.SerialException as e:
             if self._stop.isSet():
@@ -123,7 +123,7 @@ class Teleinfo:
                 while '\x02' not in resp:
                     resp = self._ser.readline()
                 #\x02 is in the last line of a frame, so go until the next one
-                self.log.debug("* Begin frame")
+                self.log.debug("New frame :")
                 resp = self._ser.readline()
                 #A new frame starts
                 #\x03 is the end of the frame
@@ -135,20 +135,20 @@ class Teleinfo:
                         checksum = ' '
                     else:
                         name, value, checksum = resp.replace('\r','').replace('\n','').split()
-                        self.log.debug("name : %s, value : %s, checksum : %s" % (name, value, checksum))
+                        self.log.debug("- name : {0}, value : {1}, checksum : {2}".format(name, value, checksum))
                     if self._is_valid(resp, checksum):
                         frame.append({"name" : name, "value" : value, "checksum" : checksum})
                     else:
-                        self.log.debug("** FRAME CORRUPTED !")
+                        self.log.warning("Frame corrupted, waiting for a new one...")
                         #This frame is corrupted, we need to wait until the next one
                         frame = []
                         while '\x02' not in resp:
                             resp = self._ser.readline()
-                        self.log.debug("* New frame after corrupted")
+                        self.log.debug("New frame detected after the corrupted one.")
                     resp = self._ser.readline()
                 #\x03 has been detected, that's the last line of the frame
                 if len(resp.replace('\r','').replace('\n','').split()) == 2:
-                    self.log.debug("* End frame")
+                    #self.log.debug("* End frame")
                     #The checksum char is ' '
                     name, value = resp.replace('\r','').replace('\n','').replace('\x02','').replace('\x03','').split()
                     checksum = ' '
@@ -156,10 +156,10 @@ class Teleinfo:
                     name, value, checksum = resp.replace('\r','').replace('\n','').replace('\x02','').replace('\x03','').split()
                 if self._is_valid(resp, checksum):
                     frame.append({"name" : name, "value" : value, "checksum" : checksum})
-                    self.log.debug("* End frame, is valid : %s" % frame)
+                    #self.log.debug("* End frame, is valid : {0}".format(frame))
                     is_ok = True
                 else:
-                    self.log.debug("** Last frame invalid")
+                    self.log.warning("Last frame is invalid")
                     resp = self._ser.readline()
             except ValueError:
                 #Badly formatted frame
@@ -174,11 +174,16 @@ class Teleinfo:
             @param frame : the full frame
             @param checksum : the frame checksum
         """
-        self.log.debug("Check checksum : f = %s, chk = %s" % (frame, checksum))
+        #self.log.debug("Check checksum : f = {0}, chk = {1}".format(frame, checksum))
         datas = ' '.join(frame.split()[0:2])
         my_sum = 0
         for cks in datas:
             my_sum = my_sum + ord(cks)
         computed_checksum = ( my_sum & int("111111", 2) ) + 0x20
-        self.log.debug("computed_checksum = %s" % chr(computed_checksum))
-        return chr(computed_checksum) == checksum
+        #self.log.debug("computed_checksum = {0}".format(chr(computed_checksum)))
+        if chr(computed_checksum) == checksum:
+            return True
+        else:
+            self.log.warning("Invalid checksum for '{0}' : checksum is {1}. Waiting checksum was {2}".format(frame, computed_checksum, checksum))
+            return False
+

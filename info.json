@@ -23,7 +23,7 @@
             "id": "teleinfo.teleinfo",
             "name": "Teleinformation",
             "commands": [],
-            "sensors": ["adco", "optarif", "isousc", "base", "iinst", "imax", "motdetat"],
+            "sensors": ["adco", "optarif", "isousc", "base", "iinst", "imax", "motdetat", "hchc", "hchp", "ptec", "papp", "hhphc", "iinst1", "iinst2", "iinst3", "imax1", "imax2", "imax3"],
             "parameters": [
                 {
                     "key": "device",
@@ -42,7 +42,7 @@
     },
     "sensors": {
         "adco": {
-            "name": "Adresse du compteur",
+            "name": "Electric counter address",
             "data_type": "DT_String",
             "conversion": "",
             "incremental": false,
@@ -55,7 +55,7 @@
             }
         },
         "optarif": {
-            "name": "Option tarifaire",
+            "name": "Tariff option",
             "data_type": "DT_String",
             "conversion": "",
             "incremental": false,
@@ -68,7 +68,7 @@
             }
         },
         "isousc": {
-            "name": "Intensité souscrite",
+            "name": "Power subscribed",
             "data_type": "DT_Number",
             "conversion": "",
             "incremental": false,
@@ -81,7 +81,7 @@
             }
         },
         "base": {
-            "name": "Index option base",
+            "name": "Base option index",
             "data_type": "DT_String",
             "conversion": "",
             "incremental": false,
@@ -94,7 +94,7 @@
             }
         },
         "iinst": {
-            "name": "Intensité instantanée",
+            "name": "Instant power",
             "data_type": "DT_Number",
             "conversion": "",
             "incremental": false,
@@ -107,7 +107,7 @@
             }
         },
         "imax": {
-            "name": "Intensité maximale appelée",
+            "name": "Maximum power",
             "data_type": "DT_String",
             "conversion": "",
             "incremental": false,
@@ -120,8 +120,151 @@
             }
         },
         "motdetat": {
-            "name": "Mot d'état du compteur",
+            "name": "Counter status",
             "data_type": "DT_String",
+            "conversion": "",
+            "incremental": false,
+            "history": {
+                "store": true,
+                "duplicate": false,
+                "max": 0,
+                "expire": 0,
+                "round_value": 0
+            }
+        },
+        "hchc": {
+            "name": "Off peak hours",
+            "data_type": "DT_Number",
+            "conversion": "",
+            "incremental": false,
+            "history": {
+                "store": true,
+                "duplicate": false,
+                "max": 0,
+                "expire": 0,
+                "round_value": 0
+            }
+        },
+        "hchp": {
+            "name": "Peak hours",
+            "data_type": "DT_Number",
+            "conversion": "",
+            "incremental": false,
+            "history": {
+                "store": true,
+                "duplicate": false,
+                "max": 0,
+                "expire": 0,
+                "round_value": 0
+            }
+        },
+        "ptec": {
+            "name": "Tariff period",
+            "data_type": "DT_String",
+            "conversion": "",
+            "incremental": false,
+            "history": {
+                "store": true,
+                "duplicate": false,
+                "max": 0,
+                "expire": 0,
+                "round_value": 0
+            }
+        },
+        "papp": {
+            "name": "Apparent power",
+            "data_type": "DT_Number",
+            "conversion": "",
+            "incremental": false,
+            "history": {
+                "store": true,
+                "duplicate": false,
+                "max": 0,
+                "expire": 0,
+                "round_value": 0
+            }
+        },
+        "hhphc": {
+            "name": "Hourly group",
+            "data_type": "DT_String",
+            "conversion": "",
+            "incremental": false,
+            "history": {
+                "store": true,
+                "duplicate": false,
+                "max": 0,
+                "expire": 0,
+                "round_value": 0
+            }
+        },
+        "iinst1": {
+            "name": "Instant power on phasis 1",
+            "data_type": "DT_Number",
+            "conversion": "",
+            "incremental": false,
+            "history": {
+                "store": true,
+                "duplicate": false,
+                "max": 0,
+                "expire": 0,
+                "round_value": 0
+            }
+        },
+        "iinst2": {
+            "name": "Instant power on phasis 2",
+            "data_type": "DT_Number",
+            "conversion": "",
+            "incremental": false,
+            "history": {
+                "store": true,
+                "duplicate": false,
+                "max": 0,
+                "expire": 0,
+                "round_value": 0
+            }
+        },
+        "iinst3": {
+            "name": "Instant power on phasis 3",
+            "data_type": "DT_Number",
+            "conversion": "",
+            "incremental": false,
+            "history": {
+                "store": true,
+                "duplicate": false,
+                "max": 0,
+                "expire": 0,
+                "round_value": 0
+            }
+        },
+        "imax1": {
+            "name": "Maximum power on phasis 1",
+            "data_type": "DT_Number",
+            "conversion": "",
+            "incremental": false,
+            "history": {
+                "store": true,
+                "duplicate": false,
+                "max": 0,
+                "expire": 0,
+                "round_value": 0
+            }
+        },
+        "imax2": {
+            "name": "Maximum power on phasis 2",
+            "data_type": "DT_Number",
+            "conversion": "",
+            "incremental": false,
+            "history": {
+                "store": true,
+                "duplicate": false,
+                "max": 0,
+                "expire": 0,
+                "round_value": 0
+            }
+        },
+        "imax3": {
+            "name": "Maximum power on phasis 3",
+            "data_type": "DT_Number",
             "conversion": "",
             "incremental": false,
             "history": {
@@ -175,6 +318,61 @@
                          "key": "motdetat",
                          "ignore_values": "",
                          "sensor": "motdetat"
+                    },
+                    {
+                         "key": "hchc",
+                         "ignore_values": "",
+                         "sensor": "hchc"
+                    },
+                    {
+                         "key": "hchp",
+                         "ignore_values": "",
+                         "sensor": "hchp"
+                    },
+                    {
+                         "key": "ptec",
+                         "ignore_values": "",
+                         "sensor": "ptec"
+                    },
+                    {
+                         "key": "papp",
+                         "ignore_values": "",
+                         "sensor": "papp"
+                    },
+                    {
+                         "key": "hhphc",
+                         "ignore_values": "",
+                         "sensor": "hhphc"
+                    },
+                    {
+                         "key": "iinst1",
+                         "ignore_values": "",
+                         "sensor": "iinst1"
+                    },
+                    {
+                         "key": "iinst2",
+                         "ignore_values": "",
+                         "sensor": "iinst2"
+                    },
+                    {
+                         "key": "iinst3",
+                         "ignore_values": "",
+                         "sensor": "iinst3"
+                    },
+                    {
+                         "key": "imax1",
+                         "ignore_values": "",
+                         "sensor": "imax1"
+                    },
+                    {
+                         "key": "imax2",
+                         "ignore_values": "",
+                         "sensor": "imax2"
+                    },
+                    {
+                         "key": "imax3",
+                         "ignore_values": "",
+                         "sensor": "imax3"
                     }
                 ]
             }

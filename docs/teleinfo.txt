@@ -1,0 +1,62 @@
+.. _index:
+
+===============
+Plugin teleinfo
+===============
+
+Purpose
+=======
+
+*Teleinformation* is a protocol used by a French power provider. 
+The electric meter sends informations on a special bus. 
+
+With some custom PCB, you can read these informations and keep/log/study your power consumption. 
+
+Models supported by this plugin :
+
+* Dauguet USB Teleinfo modem. You can find it here : http://www.domotibox.com/solarbox/?section=Boutique
+* Dauguet Seriel Teleinfo modem. You can find it here : http://www.domotibox.com/solarbox/?section=Boutique
+
+Others modem could be supported by plugin. Feel free to test them with this plugin and report us :)
+
+Interesting links about teleinfo :
+
+* (fr) http://www.planete-domotique.com/blog/2010/03/30/la-teleinformation-edf/
+* (fr) http://bernard.lefrancois.free.fr/teleinfo.htm
+
+Dependencies
+============
+
+* Python dependancy : pyserial
+
+Plugin configuration
+====================
+
+There is no global configuration options for this plugin.
+
+Plug the teleinfo module to the electric meter
+==============================================
+
+Example with the Dauguet Usb Model
+----------------------------------
+First, you should have an electric meter like this one:
+
+.. image :: compteur.jpg
+
+Open the bottom part (be careful, if there is a metallic security to prevoid opening, you may be looking for the wrong thing!!) of the electric meter. On the right, you should see __I1__ and __I2__ : it is there you should plug the teleinfo modem. On this photo, there are both a teleinfo modem and a heating programmer pluged:
+
+.. image :: compteur_zoom.jpg
+
+Here is the Usb teleinfo modem : on the left, the usb plug, on the right, the 2 wires that are plugged on I1 and I2:
+
+.. image :: teleinfo_modem.jpg
+
+Create an udev rule
+===================
+
+You may create a udev rule for this device. You can find sample udev rules in the **udev/** folder of this plugin.
+
+You just need to copy the choosen sample file in the folder **/etc/udev/rules.d/** and restart the udev rules daemon: ::
+
+    $ sudo /etc/init.d/udev restart
+

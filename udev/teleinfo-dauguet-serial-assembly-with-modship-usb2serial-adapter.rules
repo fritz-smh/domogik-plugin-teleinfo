@@ -1,0 +1,3 @@
+# model : Dauguet serial over modchip
+# description : Dauguet serial assembly with a modchip usb to serial adapter
+KERNEL=="ttyUSB*", ATTRS{port_number}=="0", DRIVERS=="moschip7720", SYMLINK+="teleinfo", MODE="0666"

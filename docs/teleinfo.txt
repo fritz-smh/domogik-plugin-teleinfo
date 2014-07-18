@@ -60,3 +60,30 @@ You just need to copy the choosen sample file in the folder **/etc/udev/rules.d/
 
     $ sudo /etc/init.d/udev restart
 
+Create the domogik devices
+==========================
+
+Domogik device type : teleinfo.electric_meter
+---------------------------------------------
+
+2 parameters are needed for a domogik device creation:
+
+===================== =========================== ======================================================================
+Key                   Type                        Description
+===================== =========================== ======================================================================
+device                string                      The teleinformation module device path (ex : /dev/teleinfo for an usb model).
+--------------------- --------------------------- ----------------------------------------------------------------------
+interval              number                      The time in seconds between each check.
+===================== =========================== ======================================================================
+
+Start the plugin
+================
+
+You can now start the plugin (start button) and use the created domogik devices.
+
+Set up your widgets on the user interface
+=========================================
+
+You can now place the widgets of your devices features on the user interface.
+
+

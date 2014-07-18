@@ -1,0 +1,11 @@
+=======================
+Technical documentation
+=======================
+
+xPL schema
+==========
+
+Two new xPL schema have been defined for this plugin:
+
+* teleinfo.basic
+* teleinfo.short

@@ -18,9 +18,9 @@
     },
     "configuration": [],
     "device_types": {
-        "teleinfo.teleinfo": {
+        "teleinfo.electric_meter": {
             "description": "Teleinformation",
-            "id": "teleinfo.teleinfo",
+            "id": "teleinfo.electric_meter",
             "name": "Teleinformation",
             "commands": [],
             "sensors": ["adco", "optarif", "isousc", "base", "iinst", "imax", "motdetat", "hchc", "hchp", "ptec", "papp", "hhphc", "iinst1", "iinst2", "iinst3", "imax1", "imax2", "imax3"],
@@ -28,7 +28,7 @@
                 {
                     "key": "device",
                     "xpl": false,
-                    "description": "The teleinformation module device path (ex : /dev/ttyUSB0 for an usb model).",
+                    "description": "The teleinformation module device path (ex : /dev/teleinfo for an usb model).",
                     "type": "string"
                 },
                 {
@@ -42,7 +42,7 @@
     },
     "sensors": {
         "adco": {
-            "name": "Electric counter address",
+            "name": "Electric meter address",
             "data_type": "DT_String",
             "conversion": "",
             "incremental": false,

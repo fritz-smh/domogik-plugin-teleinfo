@@ -26,7 +26,7 @@ There is no xpl-trig message for this schema
 xpl-stat
 ********
 
-..note ::
+.. note ::
 
     You will find more informations about the schema keys in the :doc:`description of the teleinformation frame <teleinfo_informations>`.
 

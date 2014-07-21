@@ -109,9 +109,3 @@ Start the plugin
 
 You can now start the plugin (start button) and use the created domogik devices.
 
-Set up your widgets on the user interface
-=========================================
-
-You can now place the widgets of your devices features on the user interface.
-
-

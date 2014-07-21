@@ -9,3 +9,91 @@ Two new xPL schema have been defined for this plugin:
 
 * teleinfo.basic
 * teleinfo.short
+
+teleinfo.basic
+--------------
+
+xpl-trig
+********
+
+There is no xpl-trig message for this schema
+
+xpl-cmnd
+********
+
+There is no xpl-trig message for this schema
+
+xpl-stat
+********
+
+.. notice::
+    You will find more informations about the schema keys in the :doc:`description of the teleinformation frame <teleinfo_informations>`.
+
+This is the classic message. Notice that the device identifier corresponds to the ADCO field: ::
+
+    teleinfo.basic
+    {
+    adco=...
+    optarif=...
+    isousc=...
+    base=...
+    iinst=...
+    imax=...
+    motdetat=...
+    [hchc=...]
+    [hchp=...]
+    [ejphn=...]
+    [ejphpm=...]
+    [bbrhcjb=...]
+    [bbrhpjb=...]
+    [bbrhcjw=...]
+    [bbrhpjw=...]
+    [bbrhcjr=...]
+    [bbrhpjr=...]
+    [pejp=...]
+    [ptec=...]
+    [demain=...]
+    [adps=...]
+    [papp=...]
+    [hhphc=...]
+    [ppot=...]
+    [iinst1=...]
+    [iinst2=...]
+    [iinst3=...]
+    [imax1=...]
+    [imax2=...]
+    [imax3=...]
+    [pmax=...]
+    }
+
+teleinfo.short
+--------------
+
+The **teleinfo.short** schema is sent when the max intensity is reached on a 3 phasis installation.
+
+xpl-trig
+********
+
+There is no xpl-trig message for this schema
+
+xpl-cmnd
+********
+
+There is no xpl-trig message for this schema
+
+xpl-stat
+********
+
+This is the message sent when for a 3 phasis installation, the max intensity is reached. Notice that the device identifier corresponds to the ADCO field: ::
+
+    teleinfo.short
+    {
+    adco=...
+    adir1=...
+    adir2=...
+    adir3=...
+    iinst1=...
+    iinst2=...
+    iinst3=...
+    }
+

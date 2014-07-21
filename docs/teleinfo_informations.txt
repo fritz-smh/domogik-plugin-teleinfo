@@ -7,55 +7,33 @@ Teleinfo data explanation
 
 **Notice : this plugin is only related to french people, so following data has no interest to be translated.**
 
-+-----------+-----------------------+------------------------------------------------------------------------------------------------------------------------------------------+
-|Tag        |Format                 |Description                                                                                                                               |
-+===========+=======================+==========================================================================================================================================+
-|ADCO       |12 car.                | NÂ° d'identification du compteur                                                                                                          |
-+-----------+-----------------------+------------------------------------------------------------------------------------------------------------------------------------------+
-|OPTARIF    |4 car.                 | Option tarifaire (type d'abonnement)                                                                                                     |
-+-----------+-----------------------+------------------------------------------------------------------------------------------------------------------------------------------+
-|ISOUSC     |2 car. unitÃ© = ampÃ¨res | IntensitÃ© souscrite                                                                                                                      |
-+-----------+-----------------------+------------------------------------------------------------------------------------------------------------------------------------------+
-|BASE       |9 car. unitÃ© = Wh      | Index si option = base                                                                                                                   |
-+-----------+-----------------------+------------------------------------------------------------------------------------------------------------------------------------------+
-|HCHC       |9 car. unitÃ© = Wh      | Index heures creuses si option = heures creuses                                                                                          |
-+-----------+-----------------------+------------------------------------------------------------------------------------------------------------------------------------------+
-|HCHP       |9 car. unitÃ© = Wh      | Index heures pleines si option = heures creuses                                                                                          |
-+-----------+-----------------------+------------------------------------------------------------------------------------------------------------------------------------------+
-|EJP HN     |9 car. unitÃ© = Wh      | Index heures normales si option = EJP                                                                                                    |
-+-----------+-----------------------+------------------------------------------------------------------------------------------------------------------------------------------+
-|EJP HPM    |9 car. unitÃ© = Wh      | Index heures de pointe mobile si option = EJP                                                                                            |
-+-----------+-----------------------+------------------------------------------------------------------------------------------------------------------------------------------+
-|BBR HC JB  |9 car. unitÃ© = Wh      | Index heures creuses jours bleus si option = tempo                                                                                       |
-+-----------+-----------------------+------------------------------------------------------------------------------------------------------------------------------------------+
-|BBR HP JB  |9 car. unitÃ© = Wh      | Index heures pleines jours bleus si option = tempo                                                                                       |
-+-----------+-----------------------+------------------------------------------------------------------------------------------------------------------------------------------+
-|BBR HC JW  |9 car. unitÃ© = Wh      | Index heures creuses jours blancs si option = tempo                                                                                      |
-+-----------+-----------------------+------------------------------------------------------------------------------------------------------------------------------------------+
-|BBR HP JW  |9 car. unitÃ© = Wh      | Index heures pleines jours blancs si option = tempo                                                                                      |
-+-----------+-----------------------+------------------------------------------------------------------------------------------------------------------------------------------+
-|BBR HC JR  |9 car. unitÃ© = Wh      | Index heures creuses jours rouges si option = tempo                                                                                      |
-+-----------+-----------------------+------------------------------------------------------------------------------------------------------------------------------------------+
-|BBR HP JR  |9 car. unitÃ© = Wh      | Index heures pleines jours rouges si option = tempo                                                                                      |
-+-----------+-----------------------+------------------------------------------------------------------------------------------------------------------------------------------+
-|PEJP       |2 car.                 | PrÃ©avis EJP si option = EJP (30mn avant pÃ©riode EJP)                                                                                     |
-+-----------+-----------------------+------------------------------------------------------------------------------------------------------------------------------------------+
-|PTEC       |4 car.                 | PÃ©riode tarifaire en cours                                                                                                               |
-+-----------+-----------------------+------------------------------------------------------------------------------------------------------------------------------------------+
-|DEMAIN     |                       | Couleur du lendemain si option = tempo                                                                                                   |
-+-----------+-----------------------+------------------------------------------------------------------------------------------------------------------------------------------+
-|IINST      |3 car. unitÃ© = ampÃ¨res | IntensitÃ© instantanÃ©e                                                                                                                    |
-+-----------+-----------------------+------------------------------------------------------------------------------------------------------------------------------------------+
-|ADPS       |3 car. unitÃ© = ampÃ¨res | Avertissement de dÃ©passement de puissance souscrite (message Ã©mis uniquement en cas de dÃ©passement effectif, dans ce cas il est immÃ©diat)|
-+-----------+-----------------------+------------------------------------------------------------------------------------------------------------------------------------------+
-|IMAX       |3 car. unitÃ© = ampÃ¨res | IntensitÃ© maximale                                                                                                                       |
-+-----------+-----------------------+------------------------------------------------------------------------------------------------------------------------------------------+
-|PAPP       |5 car. unitÃ© = VA      | Puissance apparente : PAPP                                                                                                               |
-+-----------+-----------------------+------------------------------------------------------------------------------------------------------------------------------------------+
-|HHPHC      |1 car.                 | Groupe horaire si option = heures creuses ou tempo                                                                                       |
-+-----------+-----------------------+------------------------------------------------------------------------------------------------------------------------------------------+
-|MOTDETAT   |6 car.                 | Mot d'Ã©tat (autocontrÃ´le)                                                                                                                |
-+-----------+-----------------------+------------------------------------------------------------------------------------------------------------------------------------------+
+=========== ======================= ================================================================
+Tag         Format                  Description                                                                                                                               
+=========== ======================= ================================================================
+ADCO        12 car.                 Electric meter address                                                                                                                   
+OPTARIF     4 car.                  Option tarifaire (type d'abonnement)                                                                                                     
+ISOUSC      2 car. unit = ampere    IntensitÃ© souscrite                                                                                                                      
+BASE        9 car. unit = Wh        Index si option = base                                                                                                                   
+HCHC        9 car. unit = Wh        Index heures creuses si option = heures creuses                                                                                          
+HCHP        9 car. unit = Wh        Index heures pleines si option = heures creuses                                                                                          
+EJP HN      9 car. unit = Wh        Index heures normales si option = EJP                                                                                                    
+EJP HPM     9 car. unit = Wh        Index heures de pointe mobile si option = EJP                                                                                            
+BBR HC JB   9 car. unit = Wh        Index heures creuses jours bleus si option = tempo                                                                                       
+BBR HP JB   9 car. unit = Wh        Index heures pleines jours bleus si option = tempo                                                                                       
+BBR HC JW   9 car. unit = Wh        Index heures creuses jours blancs si option = tempo                                                                                      
+BBR HP JW   9 car. unit = Wh        Index heures pleines jours blancs si option = tempo                                                                                      
+BBR HC JR   9 car. unit = Wh        Index heures creuses jours rouges si option = tempo                                                                                      
+BBR HP JR   9 car. unit = Wh        Index heures pleines jours rouges si option = tempo                                                                                      
+PEJP        2 car.                  PrÃ©avis EJP si option = EJP (30mn avant pÃ©riode EJP)                                                                                     
+PTEC        4 car.                  PÃ©riode tarifaire en cours                                                                                                               
+DEMAIN                              Couleur du lendemain si option = tempo                                                                                                   
+IINST       3 car. unit = A         IntensitÃ© instantanÃ©e                                                                                                                    
+ADPS        3 car. unit = A         Avertissement de dÃ©passement de puissance souscrite (message Ã©mis uniquement en cas de dÃ©passement effectif, dans ce cas il est immÃ©diat)
+IMAX        3 car. unit = A         IntensitÃ© maximale                                                                                                                       
+PAPP        5 car. unit = VA        Puissance apparente : PAPP                                                                                                               
+HHPHC       1 car.                  Groupe horaire si option = heures creuses ou tempo                                                                                       
+MOTDETAT    6 car.                  Mot d'Ã©tat (autocontrÃ´le)                                                                                                                
+=========== ======================= ================================================================
 
 
 Three phase specific data

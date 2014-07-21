@@ -56,9 +56,32 @@ Create an udev rule
 
 You may create a udev rule for this device. You can find sample udev rules in the **udev/** folder of this plugin.
 
-You just need to copy the choosen sample file in the folder **/etc/udev/rules.d/** and restart the udev rules daemon: ::
+You just need to copy the choosen sample file in the folder **/etc/udev/rules.d/** and unplug/plug the device.
 
-    $ sudo /etc/init.d/udev restart
+Check the device under Linux
+============================
+
+Setup the connection according to the Teleinfo specifications :
+
+.. code-block:: none
+
+    $ stty -F /dev/teleinfo 1200 sane evenp parenb cs7 -crtscts
+
+Display the data flow ::
+
+    $ cat /dev/teleinfo
+    ADCO 012345678901 =
+    OPTARIF HC.. <
+    ISOUSC 60 <
+    HCHC 009205446 $
+    HCHP 011101473 %
+    PTEC HP..
+    IINST 002 Y
+    IMAX 047 J
+    PAPP 00520 (
+    HHPHC D /
+    MOTDETAT 000000 B
+    ...
 
 Create the domogik devices
 ==========================

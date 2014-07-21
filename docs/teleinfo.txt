@@ -99,6 +99,11 @@ device                string                      The teleinformation module dev
 interval              number                      The time in seconds between each check.
 ===================== =========================== ======================================================================
 
+.. note ::
+
+    You can find more informations about each sensors in the :doc:`description of the teleinformation frame <teleinfo_informations>`.
+
+
 Start the plugin
 ================
 

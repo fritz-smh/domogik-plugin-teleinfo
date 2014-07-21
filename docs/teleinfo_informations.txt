@@ -5,45 +5,43 @@ Teleinfo informations
 Teleinfo data explanation
 =========================
 
-**Notice : this plugin is only related to french people, so following data has no interest to be translated.**
-
 =========== ======================= ================================================================
-Tag         Format                  Description                                                                                                                               
+Tag         Format                  Description
 =========== ======================= ================================================================
-ADCO        12 car.                 Electric meter address                                                                                                                   
-OPTARIF     4 car.                  Option tarifaire (type d'abonnement)                                                                                                     
-ISOUSC      2 car. unit = ampere    IntensitÃ© souscrite                                                                                                                      
-BASE        9 car. unit = Wh        Index si option = base                                                                                                                   
-HCHC        9 car. unit = Wh        Index heures creuses si option = heures creuses                                                                                          
-HCHP        9 car. unit = Wh        Index heures pleines si option = heures creuses                                                                                          
-EJP HN      9 car. unit = Wh        Index heures normales si option = EJP                                                                                                    
-EJP HPM     9 car. unit = Wh        Index heures de pointe mobile si option = EJP                                                                                            
-BBR HC JB   9 car. unit = Wh        Index heures creuses jours bleus si option = tempo                                                                                       
-BBR HP JB   9 car. unit = Wh        Index heures pleines jours bleus si option = tempo                                                                                       
-BBR HC JW   9 car. unit = Wh        Index heures creuses jours blancs si option = tempo                                                                                      
-BBR HP JW   9 car. unit = Wh        Index heures pleines jours blancs si option = tempo                                                                                      
-BBR HC JR   9 car. unit = Wh        Index heures creuses jours rouges si option = tempo                                                                                      
-BBR HP JR   9 car. unit = Wh        Index heures pleines jours rouges si option = tempo                                                                                      
-PEJP        2 car.                  PrÃ©avis EJP si option = EJP (30mn avant pÃ©riode EJP)                                                                                     
-PTEC        4 car.                  PÃ©riode tarifaire en cours                                                                                                               
-DEMAIN                              Couleur du lendemain si option = tempo                                                                                                   
-IINST       3 car. unit = A         IntensitÃ© instantanÃ©e                                                                                                                    
-ADPS        3 car. unit = A         Avertissement de dÃ©passement de puissance souscrite (message Ã©mis uniquement en cas de dÃ©passement effectif, dans ce cas il est immÃ©diat)
-IMAX        3 car. unit = A         IntensitÃ© maximale                                                                                                                       
-PAPP        5 car. unit = VA        Puissance apparente : PAPP                                                                                                               
-HHPHC       1 car.                  Groupe horaire si option = heures creuses ou tempo                                                                                       
-MOTDETAT    6 car.                  Mot d'Ã©tat (autocontrÃ´le)                                                                                                                
+ADCO        12 car.                 Electric meter address
+OPTARIF     4 car.                  Tariff option
+ISOUSC      2 car. unit = ampere    Power subscribed
+BASE        9 car. unit = Wh        Base option index
+HCHC        9 car. unit = Wh        Peak hours index
+HCHP        9 car. unit = Wh        Off peak hours index
+EJP HN      9 car. unit = Wh        Normal hours index if option = EJP
+EJP HPM     9 car. unit = Wh        Peak hours index if option = EJP
+PEJP        2 car.                  EJP notice (30 minutes before the period) if option = EJP
+BBR HC JB   9 car. unit = Wh        Off peak hours index for blue days if option = tempo
+BBR HP JB   9 car. unit = Wh        Peak hours index for blue days if option = tempo
+BBR HC JW   9 car. unit = Wh        Off peak hours index for white days if option = tempo
+BBR HP JW   9 car. unit = Wh        Peak hours index for white days if option = tempo
+BBR HC JR   9 car. unit = Wh        Off peak hours index for red days if option = tempo
+BBR HP JR   9 car. unit = Wh        Peak hours index for red days if option = tempo
+PTEC        4 car.                  Current tariff period
+DEMAIN                              Tomorrow color if option = tempo
+IINST       3 car. unit = A         Instant power
+ADPS        3 car. unit = A         Warning when the subscribed poower is reached (emmitted only when needed)
+IMAX        3 car. unit = A         Maximum power
+PAPP        5 car. unit = VA        Apparent power
+HHPHC       1 car.                  Hourly group
+MOTDETAT    6 car.                  Counter status
 =========== ======================= ================================================================
 
 
 Three phase specific data
--------------------------
-If you have a 3-phase install, you will have more informations: 
+=========================
+If you have a 3-phase install, you will have more informations:
 
-* iinst1, iinst2,iinst3 instead of iinst
-* imax1, imax2, imax3 instaed of imax
+* **iinst1, iinst2,iinst3** instead of **iinst**
+* **imax1, imax2, imax3** instaed of **imax**
 
-If you use more than provided power on one phase, the information sent by teleinfo will change, and you will receive message using the schema teleinfo.short with only a few information :
+If you use more power than provided on one phase, the information sent by teleinfo will change, and you will receive message using the schema **teleinfo.short** with only a few informations :
 
-* ADIR1, ADIR2, ADIR3 : intensity overload on each phase
-* IINST1, IINST2, IINST3 : intensity on each phase.
+* **ADIR1, ADIR2, ADIR3** : intensity overload on each phase
+* **IINST1, IINST2, IINST3** : intensity on each phase.

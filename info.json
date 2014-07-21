@@ -23,7 +23,7 @@
             "id": "teleinfo.electric_meter",
             "name": "Teleinformation",
             "commands": [],
-            "sensors": ["adco", "optarif", "isousc", "base", "iinst", "imax", "motdetat", "hchc", "hchp", "ptec", "papp", "hhphc", "iinst1", "iinst2", "iinst3", "imax1", "imax2", "imax3"],
+            "sensors": ["adco", "optarif", "isousc", "base", "iinst", "imax", "motdetat", "hchc", "hchp", "ptec", "papp", "hhphc", "iinst1", "iinst2", "iinst3", "imax1", "imax2", "imax3", "adps"],
             "parameters": [
                 {
                     "key": "device",
@@ -133,7 +133,7 @@
             }
         },
         "hchc": {
-            "name": "Off peak hours",
+            "name": "Off peak hours index",
             "data_type": "DT_Number",
             "conversion": "",
             "incremental": false,
@@ -146,7 +146,7 @@
             }
         },
         "hchp": {
-            "name": "Peak hours",
+            "name": "Peak hours index",
             "data_type": "DT_Number",
             "conversion": "",
             "incremental": false,
@@ -159,7 +159,7 @@
             }
         },
         "ptec": {
-            "name": "Tariff period",
+            "name": "Current tariff period",
             "data_type": "DT_String",
             "conversion": "",
             "incremental": false,
@@ -264,6 +264,19 @@
         },
         "imax3": {
             "name": "Maximum power on phasis 3",
+            "data_type": "DT_Number",
+            "conversion": "",
+            "incremental": false,
+            "history": {
+                "store": true,
+                "duplicate": false,
+                "max": 0,
+                "expire": 0,
+                "round_value": 0
+            }
+        },
+        "adps": {
+            "name": "ADPS - power subscribed reached",
             "data_type": "DT_Number",
             "conversion": "",
             "incremental": false,

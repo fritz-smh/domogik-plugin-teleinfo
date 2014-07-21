@@ -26,7 +26,8 @@ There is no xpl-trig message for this schema
 xpl-stat
 ********
 
-..notice ::
+..note ::
+
     You will find more informations about the schema keys in the :doc:`description of the teleinformation frame <teleinfo_informations>`.
 
 This is the classic message. Notice that the device identifier corresponds to the ADCO field: ::

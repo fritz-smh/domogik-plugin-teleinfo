@@ -2,8 +2,11 @@
 Teleinfo informations
 =====================
 
-Teleinfo data explanation
-=========================
+Teleinformation data explanation
+================================
+
+You can find official ERDF informations here :  http://www.erdf.fr/medias/DTR_Racc_Comptage/ERDF-NOI-CPT_02E.pdf
+
 
 =========== ======================= ================================================================
 Tag         Format                  Description

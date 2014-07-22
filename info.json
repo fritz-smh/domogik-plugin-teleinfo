@@ -69,7 +69,7 @@
         },
         "isousc": {
             "name": "Power subscribed",
-            "data_type": "DT_Number",
+            "data_type": "DT_Current",
             "conversion": "",
             "incremental": false,
             "history": {
@@ -82,7 +82,7 @@
         },
         "base": {
             "name": "Base option index",
-            "data_type": "DT_String",
+            "data_type": "DT_ActiveEnergy",
             "conversion": "",
             "incremental": false,
             "history": {
@@ -95,7 +95,7 @@
         },
         "iinst": {
             "name": "Instant power",
-            "data_type": "DT_Number",
+            "data_type": "DT_Current",
             "conversion": "",
             "incremental": false,
             "history": {
@@ -108,7 +108,7 @@
         },
         "imax": {
             "name": "Maximum power",
-            "data_type": "DT_String",
+            "data_type": "DT_Current",
             "conversion": "",
             "incremental": false,
             "history": {
@@ -134,7 +134,7 @@
         },
         "hchc": {
             "name": "Off peak hours index",
-            "data_type": "DT_Number",
+            "data_type": "DT_ActiveEnergy",
             "conversion": "",
             "incremental": false,
             "history": {
@@ -147,7 +147,7 @@
         },
         "hchp": {
             "name": "Peak hours index",
-            "data_type": "DT_Number",
+            "data_type": "DT_ActiveEnergy",
             "conversion": "",
             "incremental": false,
             "history": {
@@ -173,7 +173,7 @@
         },
         "papp": {
             "name": "Apparent power",
-            "data_type": "DT_Number",
+            "data_type": "DT_ActiveEnergy",
             "conversion": "",
             "incremental": false,
             "history": {
@@ -199,7 +199,7 @@
         },
         "iinst1": {
             "name": "Instant power on phasis 1",
-            "data_type": "DT_Number",
+            "data_type": "DT_Current",
             "conversion": "",
             "incremental": false,
             "history": {
@@ -212,7 +212,7 @@
         },
         "iinst2": {
             "name": "Instant power on phasis 2",
-            "data_type": "DT_Number",
+            "data_type": "DT_Current",
             "conversion": "",
             "incremental": false,
             "history": {
@@ -225,7 +225,7 @@
         },
         "iinst3": {
             "name": "Instant power on phasis 3",
-            "data_type": "DT_Number",
+            "data_type": "DT_Current",
             "conversion": "",
             "incremental": false,
             "history": {
@@ -238,7 +238,7 @@
         },
         "imax1": {
             "name": "Maximum power on phasis 1",
-            "data_type": "DT_Number",
+            "data_type": "DT_Current",
             "conversion": "",
             "incremental": false,
             "history": {
@@ -251,7 +251,7 @@
         },
         "imax2": {
             "name": "Maximum power on phasis 2",
-            "data_type": "DT_Number",
+            "data_type": "DT_Current",
             "conversion": "",
             "incremental": false,
             "history": {
@@ -264,7 +264,7 @@
         },
         "imax3": {
             "name": "Maximum power on phasis 3",
-            "data_type": "DT_Number",
+            "data_type": "DT_Current",
             "conversion": "",
             "incremental": false,
             "history": {
@@ -277,7 +277,7 @@
         },
         "adps": {
             "name": "ADPS - power subscribed reached",
-            "data_type": "DT_Number",
+            "data_type": "DT_Current",
             "conversion": "",
             "incremental": false,
             "history": {

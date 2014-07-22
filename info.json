@@ -287,6 +287,123 @@
                 "expire": 0,
                 "round_value": 0
             }
+        },
+        "ejphn": {
+            "name": "Normal hours index if option = EJP",
+            "data_type": "DT_ActiveEnergy",
+            "conversion": "",
+            "incremental": false,
+            "history": {
+                "store": true,
+                "duplicate": false,
+                "max": 0,
+                "expire": 0,
+                "round_value": 0
+            }
+        },
+        "ejphpm": {
+            "name": "Peak hours index if option = EJP",
+            "data_type": "DT_ActiveEnergy",
+            "conversion": "",
+            "incremental": false,
+            "history": {
+                "store": true,
+                "duplicate": false,
+                "max": 0,
+                "expire": 0,
+                "round_value": 0
+            }
+        },
+        "pejp": {
+            "name": "EJP notice (30 minutes before the period) if option = EJP",
+            "data_type": "DT_Minute",
+            "conversion": "",
+            "incremental": false,
+            "history": {
+                "store": true,
+                "duplicate": false,
+                "max": 0,
+                "expire": 0,
+                "round_value": 0
+            }
+        },
+        "bbrhcjb": {
+            "name": "Off peak hours index for blue days if option = tempo",
+            "data_type": "DT_ActiveEnergy",
+            "conversion": "",
+            "incremental": false,
+            "history": {
+                "store": true,
+                "duplicate": false,
+                "max": 0,
+                "expire": 0,
+                "round_value": 0
+            }
+        },
+        "bbrhpjb": {
+            "name": "Peak hours index for blue days if option = tempo",
+            "data_type": "DT_ActiveEnergy",
+            "conversion": "",
+            "incremental": false,
+            "history": {
+                "store": true,
+                "duplicate": false,
+                "max": 0,
+                "expire": 0,
+                "round_value": 0
+            }
+        },
+        "bbrhcjw": {
+            "name": "Off peak hours index for white days if option = tempo",
+            "data_type": "DT_ActiveEnergy",
+            "conversion": "",
+            "incremental": false,
+            "history": {
+                "store": true,
+                "duplicate": false,
+                "max": 0,
+                "expire": 0,
+                "round_value": 0
+            }
+        },
+        "bbrhpjw": {
+            "name": "Peak hours index for white days if option = tempo",
+            "data_type": "DT_ActiveEnergy",
+            "conversion": "",
+            "incremental": false,
+            "history": {
+                "store": true,
+                "duplicate": false,
+                "max": 0,
+                "expire": 0,
+                "round_value": 0
+            }
+        },
+        "bbrhcjr": {
+            "name": "Off peak hours index for red days if option = tempo",
+            "data_type": "DT_ActiveEnergy",
+            "conversion": "",
+            "incremental": false,
+            "history": {
+                "store": true,
+                "duplicate": false,
+                "max": 0,
+                "expire": 0,
+                "round_value": 0
+            }
+        },
+        "bbrhpjr": {
+            "name": "Peak hours index for red days if option = tempo",
+            "data_type": "DT_ActiveEnergy",
+            "conversion": "",
+            "incremental": false,
+            "history": {
+                "store": true,
+                "duplicate": false,
+                "max": 0,
+                "expire": 0,
+                "round_value": 0
+            }
         }
     },
     "xpl_stats": {
@@ -386,6 +503,51 @@
                          "key": "imax3",
                          "ignore_values": "",
                          "sensor": "imax3"
+                    },
+                    {
+                         "key": "ejphn",
+                         "ignore_values": "",
+                         "sensor": "ejphn"
+                    },
+                    {
+                         "key": "ejphpm",
+                         "ignore_values": "",
+                         "sensor": "ejphpm"
+                    },
+                    {
+                         "key": "pejp",
+                         "ignore_values": "",
+                         "sensor": "pejp"
+                    },
+                    {
+                         "key": "bbrhcjb",
+                         "ignore_values": "",
+                         "sensor": "bbrhcjb"
+                    },
+                    {
+                         "key": "bbrhpjb",
+                         "ignore_values": "",
+                         "sensor": "bbrhpjb"
+                    },
+                    {
+                         "key": "bbrhcjw",
+                         "ignore_values": "",
+                         "sensor": "bbrhcjw"
+                    },
+                    {
+                         "key": "bbrhpjw",
+                         "ignore_values": "",
+                         "sensor": "bbrhpjw"
+                    },
+                    {
+                         "key": "bbrhcjr",
+                         "ignore_values": "",
+                         "sensor": "bbrhcjr"
+                    },
+                    {
+                         "key": "bbrhpjr",
+                         "ignore_values": "",
+                         "sensor": "bbrhpjr"
                     }
                 ]
             }

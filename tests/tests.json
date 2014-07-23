@@ -1,0 +1,8 @@
+{
+    "tests_hchp" : {
+        "alter_configuration_or_setup" : true,
+        "need_hardware" : false,
+        "criticity" : "high"
+    }
+}
+

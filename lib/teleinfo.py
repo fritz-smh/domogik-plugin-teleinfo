@@ -55,6 +55,7 @@ class TeleinfoException(Exception):
 
 class Teleinfo:
     """ Teleinfo
+        Frame format information in the read() function description
     """
 
     def __init__(self, log, callback, stop, device, interval, fake_device):
@@ -120,9 +121,14 @@ class Teleinfo:
             it waits until the next one, so if you have corruption issue,
             this method can take time but it ensures that the frame returned is valid
             @return frame : list of dict {name, value, checksum}
+
+            Information about a frame :
+            * it starts with \x02
+            * there are several groups in a frame : \n<name> <value> <checksum>\r. Example : \nHCHP 030297217 2\r
+            * it ends with \x02
         """
-        #Get the begin of the frame, marked by \x02
         self.log.debug("AVANT READ")
+        # first read
         resp = self._ser.readline()
         self.log.debug("READ : {0}".format(resp))
         is_ok = False
@@ -130,59 +136,87 @@ class Teleinfo:
         while not is_ok:
             self.log.debug("WHILE.....")
             try:
+                # wait for the start of a new frame (\x02)
                 while '\x02' not in resp:
                     resp = self._ser.readline()
                     self.log.debug("READ : {0}".format(resp))
-                #\x02 is in the last line of a frame, so go until the next one
+                #\x02 is the start of a frame, so do a loop until we reach the end of the frame
                 self.log.debug("New frame :")
+                # first read
                 resp = self._ser.readline()
                 self.log.debug("READ : {0}".format(resp))
                 #A new frame starts
                 #\x03 is the end of the frame
+                # until the end, process the groups in the frame
+                error = False
                 while '\x03' not in resp:
+                    # process the frame content (the groups)
                     #Don't use strip() here because the checksum can be ' '
                     if len(resp.replace('\r','').replace('\n','').split()) == 2:
                         #The checksum char is ' '
+                        # TODO : check that "PTEC HP..  " is handler by this code
                         name, value = resp.replace('\r','').replace('\n','').split()
                         checksum = ' '
+                        self.log.debug("- name : {0}, value : {1}, checksum : ' '".format(name, value, checksum))
                     else:
                         name, value, checksum = resp.replace('\r','').replace('\n','').split()
                         self.log.debug("- name : {0}, value : {1}, checksum : {2}".format(name, value, checksum))
+
+                    # check if the group is valid
                     if self._is_valid(resp, checksum):
                         frame.append({"name" : name, "value" : value, "checksum" : checksum})
                     else:
+                        error = True
                         self.log.warning("Frame corrupted, waiting for a new one...")
-                        #This frame is corrupted, we need to wait until the next one
-                        frame = []
-                        while '\x02' not in resp:
-                            resp = self._ser.readline()
-                            self.log.debug("READ : {0}".format(resp))
-                        self.log.debug("New frame detected after the corrupted one.")
+                        break
+
+                        # TODO : delete
+                        ##This frame is corrupted, we need to wait until the next one
+                        #frame = []
+                        #while '\x02' not in resp:
+                        #    resp = self._ser.readline()
+                        #    self.log.debug("READ : {0}".format(resp))
+                        #self.log.debug("New frame detected after the corrupted one.")
+
+                    # wait for the next group in the frame
                     resp = self._ser.readline()
                     self.log.debug("READ : {0}".format(resp))
                 #\x03 has been detected, that's the last line of the frame
-                if len(resp.replace('\r','').replace('\n','').split()) == 2:
-                    #self.log.debug("* End frame")
-                    #The checksum char is ' '
-                    name, value = resp.replace('\r','').replace('\n','').replace('\x02','').replace('\x03','').split()
-                    checksum = ' '
-                else:
-                    name, value, checksum = resp.replace('\r','').replace('\n','').replace('\x02','').replace('\x03','').split()
-                if self._is_valid(resp, checksum):
-                    frame.append({"name" : name, "value" : value, "checksum" : checksum})
-                    #self.log.debug("* End frame, is valid : {0}".format(frame))
-                    is_ok = True
-                else:
-                    self.log.warning("Last frame is invalid")
-                    resp = self._ser.readline()
-                    self.log.debug("READ : {0}".format(resp))
+                #if len(resp.replace('\r','').replace('\n','').split()) == 2:
+
+                # TODO : how to handle in a better way the last group ?
+                # => change the way we handle the while()
+                self.log.warning("DEVELOPMENT IN PROGRESS : last group missing in the frame")
+                if not error:
+                    self.log.debug("* End frame")
+                #    #The checksum char is ' '
+                #    name, value = resp.replace('\r','').replace('\n','').replace('\x02','').replace('\x03','').split()
+                #    checksum = ' '
+                #else:
+                #    buf_data = resp.replace('\r','').replace('\n','').replace('\x02','').replace('\x03','')
+                #    if len(buf_data) > 0:
+                #        name, value, checksum = buf_data.split()
+                #    else: 
+                #        name = None
+                #if name and self._is_valid(resp, checksum):
+                #    frame.append({"name" : name, "value" : value, "checksum" : checksum})
+                #    self.log.debug("* End frame, is valid : {0}".format(frame))
+                #    is_ok = True
+                #elif name is None:
+                #    pass
+                #else:
+                #    self.log.warning("Last frame is invalid")
+                #    resp = self._ser.readline()
+                #    self.log.debug("READ : {0}".format(resp))
             except ValueError:
+                self.log.debug(traceback.format_exc())
                 #Badly formatted frame
                 #This frame is corrupted, we need to wait until the next one
                 frame = []
-                while '\x02' not in resp:
-                    resp = self._ser.readline()
-                    self.log.debug("READ : {0}".format(resp))
+                #while '\x02' not in resp:
+                #    resp = self._ser.readline()
+                #    self.log.debug("READ except : {0}".format(resp))
+                break;
         return frame
 
     def _is_valid(self, frame, checksum):

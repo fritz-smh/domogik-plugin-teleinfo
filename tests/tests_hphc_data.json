@@ -1,24 +1,64 @@
 {
     "history" : [
-                    { "description" : "Send a HP frame",
+                    { "description" : "Send a dummy frame",
                       "action" : "data", 
                       "data" : "xxxxxxxxxxxx\n"
+                    },
+                    { "description" : "Send a start frame flag",
+                      "action" : "data-hex", 
+                      "data" : "02"
+                    },
+                    { "description" : "Send a HP frame",
+                      "action" : "data", 
+                      "data" : "\nADCO 030928084432 B\r"
+                    },
+                    { "description" : "Send a HP frame",
+                      "action" : "data", 
+                      "data" : "\nOPTARIF HC.. <\r"
+                    },
+                    { "description" : "Send a HP frame",
+                      "action" : "data", 
+                      "data" : "\nISOUSC 45 ?\r"
+                    },
+                    { "description" : "Send a HP frame",
+                      "action" : "data", 
+                      "data" : "\nHCHC 024073045 _\r"
+                    },
+                    { "description" : "Send a HP frame",
+                      "action" : "data", 
+                      "data" : "\nHCHP 030297217 2\r"
+                    },
+                    { "description" : "Send a HP frame",
+                      "action" : "data", 
+                      "data" : "\nPTEC HP..  \r"
+                    },
+                    { "description" : "Send a HP frame",
+                      "action" : "data", 
+                      "data" : "\nIINST 001 X\r"
+                    },
+                    { "description" : "Send a HP frame",
+                      "action" : "data", 
+                      "data" : "\nIMAX 048 K\r"
+                    },
+                    { "description" : "Send a HP frame",
+                      "action" : "data", 
+                      "data" : "\nPAPP 00300 $\r"
+                    },
+                    { "description" : "Send a HP frame",
+                      "action" : "data", 
+                      "data" : "\nHHPHC D /\r"
+                    },
+                    { "description" : "Send a HP frame",
+                      "action" : "data", 
+                      "data" : "\nMOTDETAT 000000 B\r"
+                    },
+                    { "description" : "Send an end frame flag : 0x02 and \\n 0x10",
+                      "action" : "data-hex", 
+                      "data" : "0310"
                     },
                     { "description" : "wait",
                       "action" : "wait", 
                       "delay" : 5
-                    },
-                    { "description" : "Send a HP frame",
-                      "action" : "data", 
-                      "data" : "xxxxxxxxxxxx\n"
-                    },
-                    { "description" : "wait",
-                      "action" : "wait", 
-                      "delay" : 5
-                    },
-                    { "description" : "Send a HP frame",
-                      "action" : "data", 
-                      "data" : "xxxxxxxxxxxx\n"
                     },
                     { "description" : "wait",
                       "action" : "wait", 

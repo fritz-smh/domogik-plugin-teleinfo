@@ -189,6 +189,7 @@ class Teleinfo:
                 self.log.warning("DEVELOPMENT IN PROGRESS : last group missing in the frame")
                 if not error:
                     self.log.debug("* End frame")
+                    is_ok = True
                 #    #The checksum char is ' '
                 #    name, value = resp.replace('\r','').replace('\n','').replace('\x02','').replace('\x03','').split()
                 #    checksum = ' '

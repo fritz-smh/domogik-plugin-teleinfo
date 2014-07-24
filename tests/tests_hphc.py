@@ -19,6 +19,9 @@ class TeleinfoTestCase(PluginTestCase):
         self.assertTrue(True)
 
 if __name__ == "__main__":
+
+    test_folder = os.path.dirname(os.path.realpath(__file__))
+
     ### global variables
     device = "/dev/teleinfo"
     interval = 60
@@ -37,6 +40,10 @@ if __name__ == "__main__":
     # configuration is done in test_0010_configure_the_plugin with the cfg content
     # notice that the old configuration is deleted before
     cfg = { 'configured' : True }
+
+    # specific configuration for test mdode (handled by the manager for plugin startup)
+    cfg['test_mode'] = True
+    cfg['test_option'] = "{0}/tests_hphc_data.json".format(test_folder)
 
     ### start tests
     # load the test devices class

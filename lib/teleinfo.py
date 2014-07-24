@@ -36,8 +36,8 @@ Implements
 
 import os
 import traceback
-import serial
-import time   
+import serial as serial
+import domogik.tests.common.testserial as testserial
 
 
 class TeleinfoException(Exception):
@@ -57,18 +57,20 @@ class Teleinfo:
     """ Teleinfo
     """
 
-    def __init__(self, log, callback, stop, device, interval):
-        """ Init Disk object
+    def __init__(self, log, callback, stop, device, interval, fake_device):
+        """ Init Teleinfo object
             @param log : log instance
             @param callback : callback
             @param stop : stop flag
             @param device : teleinformation device
             @param interval : interval in seconds between each read on the device
+            @param fake_device : fake device. If None, this will not be used. Else, the fake serial device library will be used
         """
         self.log = log
         self._callback = callback
         self._stop = stop
         self._device = device
+        self._fake_device = fake_device
         self._interval = interval
 
     def open(self):
@@ -76,8 +78,13 @@ class Teleinfo:
         """
         try:
             self.log.info("Try to open {0}".format(self._device))
-            self._ser = serial.Serial(self._device, 1200, bytesize=7, 
-                                      parity = 'E',stopbits=1)
+            if self._fake_device != None:
+                self._ser = testserial.Serial(self._fake_device, baudrate=1200, bytesize=7, 
+                                          parity = 'E',stopbits=1)
+            else:
+                self._ser = serial.Serial(self._device, baudrate=1200, bytesize=7, 
+                                          parity = 'E',stopbits=1)
+
             self.log.info("Teleinfo modem successfully opened")
         except:
             error = "Error opening Teleinfo modem '{0}' : {1} ".format(self._device, traceback.format_exc())
@@ -115,16 +122,21 @@ class Teleinfo:
             @return frame : list of dict {name, value, checksum}
         """
         #Get the begin of the frame, marked by \x02
+        self.log.debug("AVANT READ")
         resp = self._ser.readline()
+        self.log.debug("READ : {0}".format(resp))
         is_ok = False
         frame = []
         while not is_ok:
+            self.log.debug("WHILE.....")
             try:
                 while '\x02' not in resp:
                     resp = self._ser.readline()
+                    self.log.debug("READ : {0}".format(resp))
                 #\x02 is in the last line of a frame, so go until the next one
                 self.log.debug("New frame :")
                 resp = self._ser.readline()
+                self.log.debug("READ : {0}".format(resp))
                 #A new frame starts
                 #\x03 is the end of the frame
                 while '\x03' not in resp:
@@ -144,8 +156,10 @@ class Teleinfo:
                         frame = []
                         while '\x02' not in resp:
                             resp = self._ser.readline()
+                            self.log.debug("READ : {0}".format(resp))
                         self.log.debug("New frame detected after the corrupted one.")
                     resp = self._ser.readline()
+                    self.log.debug("READ : {0}".format(resp))
                 #\x03 has been detected, that's the last line of the frame
                 if len(resp.replace('\r','').replace('\n','').split()) == 2:
                     #self.log.debug("* End frame")
@@ -161,12 +175,14 @@ class Teleinfo:
                 else:
                     self.log.warning("Last frame is invalid")
                     resp = self._ser.readline()
+                    self.log.debug("READ : {0}".format(resp))
             except ValueError:
                 #Badly formatted frame
                 #This frame is corrupted, we need to wait until the next one
                 frame = []
                 while '\x02' not in resp:
                     resp = self._ser.readline()
+                    self.log.debug("READ : {0}".format(resp))
         return frame
 
     def _is_valid(self, frame, checksum):

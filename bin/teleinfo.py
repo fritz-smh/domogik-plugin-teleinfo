@@ -22,12 +22,12 @@ along with Domogik. If not, see U{http://www.gnu.org/licenses}.
 Plugin purpose
 ==============
 
-Disk free
+Teleinfo
 
 Implements
 ==========
 
-- DiskManager
+- TeleinfoManager
 
 @author: Fritz <fritz.smh@gmail.com>
 @copyright: (C) 2007-2014 Domogik project
@@ -70,7 +70,7 @@ class TeleinfoManager(XplPlugin):
                 device = self.get_parameter(a_device, "device")
                 interval = self.get_parameter(a_device, "interval")
                 
-                teleinfo_list[device] = Teleinfo(self.log, self.send_xpl, self.get_stop(), device, interval)
+                teleinfo_list[device] = Teleinfo(self.log, self.send_xpl, self.get_stop(), device, interval, self.options.test_option)
                 teleinfo_list[device].open()
 
                 # start the teleinfo thread

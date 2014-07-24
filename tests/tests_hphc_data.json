@@ -1,0 +1,31 @@
+{
+    "history" : [
+                    { "description" : "Send a HP frame",
+                      "action" : "data", 
+                      "data" : "xxxxxxxxxxxx\n"
+                    },
+                    { "description" : "wait",
+                      "action" : "wait", 
+                      "delay" : 5
+                    },
+                    { "description" : "Send a HP frame",
+                      "action" : "data", 
+                      "data" : "xxxxxxxxxxxx\n"
+                    },
+                    { "description" : "wait",
+                      "action" : "wait", 
+                      "delay" : 5
+                    },
+                    { "description" : "Send a HP frame",
+                      "action" : "data", 
+                      "data" : "xxxxxxxxxxxx\n"
+                    },
+                    { "description" : "wait",
+                      "action" : "wait", 
+                      "delay" : 5
+                    }
+                ],
+    "responses" : {},
+    "loop" : [
+              ]
+}

@@ -59,13 +59,13 @@
                     { "description" : "wait",
                       "action" : "wait", 
                       "delay" : 5
-                    },
-                    { "description" : "wait",
-                      "action" : "wait", 
-                      "delay" : 5
                     }
                 ],
     "responses" : {},
     "loop" : [
+                    { "description" : "wait",
+                      "action" : "wait", 
+                      "delay" : 60
+                    }
               ]
 }

@@ -12,11 +12,64 @@ import unittest
 import sys
 import os
 import traceback
+# TODO : remove
+import time
 
 class TeleinfoTestCase(PluginTestCase):
 
     def test_0100_dummy(self):
         self.assertTrue(True)
+
+    def test_0100_hphc(self):
+        """ Test if the teleinfo.basic schema is sent when a frame is received
+        """
+        global interval
+        global device
+        global device_id
+
+        # do the test
+        print(u"Check that a xPL message for the frame received is sent.")
+        
+        self.assertTrue(self.wait_for_xpl(xpltype = "xpl-stat",
+                                          xplschema = "teleinfo.basic",
+                                          xplsource = "domogik-{0}.{1}".format(self.name, get_sanitized_hostname()),
+                                          data = {"adco" : "030928084432",
+                                                  "optarif" : "HC..",
+                                                  "isousc" : "45",
+                                                  "hchc" : "024073045",
+                                                  "hchp" : "030297217",
+                                                  "ptec" : "HP..",
+                                                  "iinst" : "001",
+                                                  "imax" : "048",
+                                                  "papp" : "00300",
+                                                  "hhphc" : "D",
+                                                  "motdetat" : "000000"},
+                                          timeout = interval * 60))
+        time.sleep(1)
+        print(u"Check that the values of the xPL message has been inserted in database")
+        sensor = TestSensor(device_id, "adco")
+        self.assertTrue(sensor.get_last_value()[1] == self.xpl_data.data['adco'])
+        sensor = TestSensor(device_id, "optarif")
+        self.assertTrue(sensor.get_last_value()[1] == self.xpl_data.data['optarif'])
+        sensor = TestSensor(device_id, "isousc")
+        self.assertTrue(sensor.get_last_value()[1] == self.xpl_data.data['isousc'])
+        sensor = TestSensor(device_id, "hchc")
+        self.assertTrue(sensor.get_last_value()[1] == self.xpl_data.data['hchc'])
+        sensor = TestSensor(device_id, "hchp")
+        self.assertTrue(sensor.get_last_value()[1] == self.xpl_data.data['hchp'])
+        sensor = TestSensor(device_id, "ptec")
+        self.assertTrue(sensor.get_last_value()[1] == self.xpl_data.data['ptec'])
+        sensor = TestSensor(device_id, "iinst")
+        self.assertTrue(sensor.get_last_value()[1] == self.xpl_data.data['iinst'])
+        sensor = TestSensor(device_id, "imax")
+        self.assertTrue(sensor.get_last_value()[1] == self.xpl_data.data['imax'])
+        sensor = TestSensor(device_id, "papp")
+        self.assertTrue(sensor.get_last_value()[1] == self.xpl_data.data['papp'])
+        sensor = TestSensor(device_id, "hhphc")
+        self.assertTrue(sensor.get_last_value()[1] == self.xpl_data.data['hhphc'])
+        sensor = TestSensor(device_id, "motdetat")
+        self.assertTrue(sensor.get_last_value()[1] == self.xpl_data.data['motdetat'])
+
 
 if __name__ == "__main__":
 
@@ -78,7 +131,7 @@ if __name__ == "__main__":
         # xpl params
         pass # there are no xpl params for this plugin
         # create
-        td.create_device(params)
+        device_id = td.create_device(params)['id']
 
     except:
         print(u"Error while creating the test devices : {0}".format(traceback.format_exc()))
@@ -95,10 +148,10 @@ if __name__ == "__main__":
 
 
     # do the specific plugin tests
-    suite.addTest(TeleinfoTestCase("test_0100_dummy", xpl_plugin, name, cfg))
+    suite.addTest(TeleinfoTestCase("test_0100_hphc", xpl_plugin, name, cfg))
 
     # do some tests comon to all the plugins
-    suite.addTest(TeleinfoTestCase("test_9900_hbeat", xpl_plugin, name, cfg))
+    #suite.addTest(TeleinfoTestCase("test_9900_hbeat", xpl_plugin, name, cfg))
     suite.addTest(TeleinfoTestCase("test_9990_stop_the_plugin", xpl_plugin, name, cfg))
 
     # quit

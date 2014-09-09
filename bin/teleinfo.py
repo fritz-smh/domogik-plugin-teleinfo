@@ -103,6 +103,7 @@ class TeleinfoManager(XplPlugin):
         ''' Send a frame from teleinfo device to xpl
         @param frame : a dictionnary mapping teleinfo informations
         '''
+        known_keys = []   # used to filter duplicate keys (it happens)
         my_temp_message = XplMessage()
         my_temp_message.set_type("xpl-stat")
         if "ADIR1" in frame:
@@ -116,7 +117,9 @@ class TeleinfoManager(XplPlugin):
             for entry in frame:
                 key = re.sub('[^\w\.]','',entry["name"].lower())
                 val = re.sub('[^\w\.]','',entry["value"].lower())
-                my_temp_message.add_data({ key : val })
+                if key not in known_keys:
+                    my_temp_message.add_data({ key : val })
+                    known_keys.append(key)
             my_temp_message.add_data({"device": "teleinfo"})
         except :
             self.log.error("Error while creating xpl message : {0} ; key : {1} ; val : {2}. Error is : {3}".format(my_temp_message, key, val, traceback.formar_exc()))

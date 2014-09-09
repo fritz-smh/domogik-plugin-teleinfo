@@ -2,6 +2,11 @@
 Technical documentation
 =======================
 
+Timeout on sensors
+==================
+
+As all keys are not always returned by the teleinformation, a timeout has been defined only on the sensor for ADCO frame. This timeout has been set to 3 minutes. All other sensors timeouts are set to 0.
+
 xPL schema
 ==========
 

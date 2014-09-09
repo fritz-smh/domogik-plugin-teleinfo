@@ -46,6 +46,7 @@
             "data_type": "DT_String",
             "conversion": "",
             "incremental": false,
+            "timeout": 180,
             "history": {
                 "store": true,
                 "duplicate": false,
@@ -59,6 +60,7 @@
             "data_type": "DT_String",
             "conversion": "",
             "incremental": false,
+            "timeout": 0,
             "history": {
                 "store": true,
                 "duplicate": false,
@@ -72,6 +74,7 @@
             "data_type": "DT_Current",
             "conversion": "",
             "incremental": false,
+            "timeout": 0,
             "history": {
                 "store": true,
                 "duplicate": false,
@@ -85,6 +88,7 @@
             "data_type": "DT_ActiveEnergy",
             "conversion": "",
             "incremental": false,
+            "timeout": 0,
             "history": {
                 "store": true,
                 "duplicate": false,
@@ -98,6 +102,7 @@
             "data_type": "DT_Current",
             "conversion": "",
             "incremental": false,
+            "timeout": 0,
             "history": {
                 "store": true,
                 "duplicate": false,
@@ -111,6 +116,7 @@
             "data_type": "DT_Current",
             "conversion": "",
             "incremental": false,
+            "timeout": 0,
             "history": {
                 "store": true,
                 "duplicate": false,
@@ -124,6 +130,7 @@
             "data_type": "DT_String",
             "conversion": "",
             "incremental": false,
+            "timeout": 0,
             "history": {
                 "store": true,
                 "duplicate": false,
@@ -137,6 +144,7 @@
             "data_type": "DT_ActiveEnergy",
             "conversion": "",
             "incremental": false,
+            "timeout": 0,
             "history": {
                 "store": true,
                 "duplicate": false,
@@ -150,6 +158,7 @@
             "data_type": "DT_ActiveEnergy",
             "conversion": "",
             "incremental": false,
+            "timeout": 0,
             "history": {
                 "store": true,
                 "duplicate": false,
@@ -163,6 +172,7 @@
             "data_type": "DT_String",
             "conversion": "",
             "incremental": false,
+            "timeout": 0,
             "history": {
                 "store": true,
                 "duplicate": false,
@@ -176,6 +186,7 @@
             "data_type": "DT_ActiveEnergy",
             "conversion": "",
             "incremental": false,
+            "timeout": 0,
             "history": {
                 "store": true,
                 "duplicate": false,
@@ -189,6 +200,7 @@
             "data_type": "DT_String",
             "conversion": "",
             "incremental": false,
+            "timeout": 0,
             "history": {
                 "store": true,
                 "duplicate": false,
@@ -202,6 +214,7 @@
             "data_type": "DT_Current",
             "conversion": "",
             "incremental": false,
+            "timeout": 0,
             "history": {
                 "store": true,
                 "duplicate": false,
@@ -215,6 +228,7 @@
             "data_type": "DT_Current",
             "conversion": "",
             "incremental": false,
+            "timeout": 0,
             "history": {
                 "store": true,
                 "duplicate": false,
@@ -228,6 +242,7 @@
             "data_type": "DT_Current",
             "conversion": "",
             "incremental": false,
+            "timeout": 0,
             "history": {
                 "store": true,
                 "duplicate": false,
@@ -241,6 +256,7 @@
             "data_type": "DT_Current",
             "conversion": "",
             "incremental": false,
+            "timeout": 0,
             "history": {
                 "store": true,
                 "duplicate": false,
@@ -254,6 +270,7 @@
             "data_type": "DT_Current",
             "conversion": "",
             "incremental": false,
+            "timeout": 0,
             "history": {
                 "store": true,
                 "duplicate": false,
@@ -267,6 +284,7 @@
             "data_type": "DT_Current",
             "conversion": "",
             "incremental": false,
+            "timeout": 0,
             "history": {
                 "store": true,
                 "duplicate": false,
@@ -280,6 +298,7 @@
             "data_type": "DT_Current",
             "conversion": "",
             "incremental": false,
+            "timeout": 0,
             "history": {
                 "store": true,
                 "duplicate": false,
@@ -293,6 +312,7 @@
             "data_type": "DT_ActiveEnergy",
             "conversion": "",
             "incremental": false,
+            "timeout": 0,
             "history": {
                 "store": true,
                 "duplicate": false,
@@ -306,6 +326,7 @@
             "data_type": "DT_ActiveEnergy",
             "conversion": "",
             "incremental": false,
+            "timeout": 0,
             "history": {
                 "store": true,
                 "duplicate": false,
@@ -319,6 +340,7 @@
             "data_type": "DT_Minute",
             "conversion": "",
             "incremental": false,
+            "timeout": 0,
             "history": {
                 "store": true,
                 "duplicate": false,
@@ -332,6 +354,7 @@
             "data_type": "DT_ActiveEnergy",
             "conversion": "",
             "incremental": false,
+            "timeout": 0,
             "history": {
                 "store": true,
                 "duplicate": false,
@@ -345,6 +368,7 @@
             "data_type": "DT_ActiveEnergy",
             "conversion": "",
             "incremental": false,
+            "timeout": 0,
             "history": {
                 "store": true,
                 "duplicate": false,
@@ -358,6 +382,7 @@
             "data_type": "DT_ActiveEnergy",
             "conversion": "",
             "incremental": false,
+            "timeout": 0,
             "history": {
                 "store": true,
                 "duplicate": false,
@@ -371,6 +396,7 @@
             "data_type": "DT_ActiveEnergy",
             "conversion": "",
             "incremental": false,
+            "timeout": 0,
             "history": {
                 "store": true,
                 "duplicate": false,
@@ -384,6 +410,7 @@
             "data_type": "DT_ActiveEnergy",
             "conversion": "",
             "incremental": false,
+            "timeout": 0,
             "history": {
                 "store": true,
                 "duplicate": false,
@@ -397,6 +424,7 @@
             "data_type": "DT_ActiveEnergy",
             "conversion": "",
             "incremental": false,
+            "timeout": 0,
             "history": {
                 "store": true,
                 "duplicate": false,

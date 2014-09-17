@@ -10,7 +10,7 @@ source_suffix = '.txt'
 master_doc = 'index'
 
 ### part to update ###################################
-project = u'domogik-plugin-diskfree'
+project = u'domogik-plugin-teleinfo'
 copyright = u'2014, Fritz'
 version = '0.1'
 release = version

@@ -78,7 +78,7 @@ class Teleinfo:
         """ Try to open the teleinfo device
         """
         try:
-            self.log.info("Try to open {0}".format(self._device))
+            self.log.info(u"Try to open {0}".format(self._device))
             if self._fake_device != None:
                 self._ser = testserial.Serial(self._fake_device, baudrate=1200, bytesize=7, 
                                           parity = 'E',stopbits=1)
@@ -86,10 +86,10 @@ class Teleinfo:
                 self._ser = serial.Serial(self._device, baudrate=1200, bytesize=7, 
                                           parity = 'E',stopbits=1)
 
-            self.log.info("Teleinfo modem successfully opened")
+            self.log.info(u"Teleinfo modem successfully opened")
         except:
             error = "Error opening Teleinfo modem '{0}' : {1} ".format(self._device, traceback.format_exc())
-            self.log.error(error)
+            self.log.error(u"{0}".format(error))
             raise TeleinfoException(error)
 
     def listen(self):
@@ -137,7 +137,7 @@ class Teleinfo:
                 while '\x02' not in resp:
                     resp = self._ser.readline()
                 #\x02 is the start of a frame, so do a loop until we reach the end of the frame
-                self.log.debug("New frame :")
+                self.log.debug(u"New frame :")
                 # first read
                 resp = self._ser.readline()
                 #A new frame starts
@@ -151,17 +151,17 @@ class Teleinfo:
                         #The checksum char is ' '
                         name, value = resp.replace('\r','').replace('\n','').split()
                         checksum = ' '
-                        self.log.debug("- name : {0}, value : {1}, checksum : ' '".format(name, value, checksum))
+                        self.log.debug(u"- name : {0}, value : {1}, checksum : ' '".format(name, value, checksum))
                     else:
                         name, value, checksum = resp.replace('\r','').replace('\n','').split()
-                        self.log.debug("- name : {0}, value : {1}, checksum : {2}".format(name, value, checksum))
+                        self.log.debug(u"- name : {0}, value : {1}, checksum : {2}".format(name, value, checksum))
 
                     # check if the group is valid
                     if self._is_valid(resp, checksum):
                         frame.append({"name" : name, "value" : value, "checksum" : checksum})
                     else:
                         error = True
-                        self.log.warning("Frame corrupted, waiting for a new one...")
+                        self.log.warning(u"Frame corrupted, waiting for a new one...")
                         break
 
                     # wait for the next group in the frame
@@ -169,7 +169,7 @@ class Teleinfo:
 
                 #\x03 has been detected, that's the last line of the frame
                 if not error:
-                    self.log.debug("* End frame")
+                    self.log.debug(u"* End frame")
                     is_ok = True
             except ValueError:
                 #Badly formatted frame
@@ -192,6 +192,6 @@ class Teleinfo:
         if chr(computed_checksum) == checksum:
             return True
         else:
-            self.log.warning("Invalid checksum for '{0}' : checksum is {1}. Waiting checksum was {2}".format(frame, computed_checksum, checksum))
+            self.log.warning(u"Invalid checksum for '{0}' : checksum is {1}. Waiting checksum was {2}".format(frame, computed_checksum, checksum))
             return False
 

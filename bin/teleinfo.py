@@ -86,7 +86,7 @@ class TeleinfoManager(XplPlugin):
                 idx += 1
 
             except:
-                self.log.error(traceback.format_exc())
+                self.log.error(u"{0}".format(traceback.format_exc()))
                 # we don't quit plugin if an error occured
                 # a teleinfo device can be KO and the others be ok
                 #self.force_leave()
@@ -122,13 +122,13 @@ class TeleinfoManager(XplPlugin):
                     known_keys.append(key)
             my_temp_message.add_data({"device": "teleinfo"})
         except :
-            self.log.error("Error while creating xpl message : {0} ; key : {1} ; val : {2}. Error is : {3}".format(my_temp_message, key, val, traceback.formar_exc()))
+            self.log.error(u"Error while creating xpl message : {0} ; key : {1} ; val : {2}. Error is : {3}".format(my_temp_message, key, val, traceback.formar_exc()))
 
         try:
             self.myxpl.send(my_temp_message)
         except XplMessageError:
             #We ignore the message if some values are not correct because it can happen with teleinfo ...
-            self.log.debug("Bad xpl message to send. This may happen due to some invalid teleinfo data. Xpl message is : {0}".format(str(my_temp_message)))
+            self.log.debug(u"Bad xpl message to send. This may happen due to some invalid teleinfo data. Xpl message is : {0}".format(str(my_temp_message)))
             pass
 
 if __name__ == "__main__":

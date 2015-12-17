@@ -44,7 +44,7 @@ If you have a 3-phase install, you will have more informations:
 * **iinst1, iinst2,iinst3** instead of **iinst**
 * **imax1, imax2, imax3** instaed of **imax**
 
-If you use more power than provided on one phase, the information sent by teleinfo will change, and you will receive message using the schema **teleinfo.short** with only a few informations :
+If you use more power than provided on one phase, the information sent by teleinfo will change, and you will receive message with only a few informations :
 
 * **ADIR1, ADIR2, ADIR3** : intensity overload on each phase
 * **IINST1, IINST2, IINST3** : intensity on each phase.

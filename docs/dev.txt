@@ -10,7 +10,7 @@ As all keys are not always returned by the teleinformation, a timeout has been d
 xPL
 ===
 
-This plugin does not use xPl anymore since the release 1.1.
+This plugin does not use xPL anymore since the release 1.2.
 
 MQ
 ==

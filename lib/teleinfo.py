@@ -58,12 +58,13 @@ class Teleinfo:
         Frame format information in the read() function description
     """
 
-    def __init__(self, log, callback, stop, device, interval, fake_device):
+    def __init__(self, log, callback, stop, device, device_id, interval, fake_device):
         """ Init Teleinfo object
             @param log : log instance
             @param callback : callback
             @param stop : stop flag
             @param device : teleinformation device
+            @param device_id : domogik device id
             @param interval : interval in seconds between each read on the device
             @param fake_device : fake device. If None, this will not be used. Else, the fake serial device library will be used
         """
@@ -71,6 +72,7 @@ class Teleinfo:
         self._callback = callback
         self._stop = stop
         self._device = device
+        self._device_id = device_id
         self._fake_device = fake_device
         self._interval = interval
 
@@ -99,7 +101,7 @@ class Teleinfo:
             while not self._stop.isSet():
                 frame = self.read()
                 #self.log.debug("Frame received : {0}".format(frame))
-                self._callback(frame)
+                self._callback(self._device_id, frame)
                 #print(frame)
                 self._stop.wait(self._interval)
         except serial.SerialException as e:

@@ -28,47 +28,46 @@ class TeleinfoTestCase(PluginTestCase):
         global device_id
 
         # do the test
-        print(u"Check that a xPL message for the frame received is sent.")
+        print(u"Check that a MQ message for the frame received is sent.")
         
-        self.assertTrue(self.wait_for_xpl(xpltype = "xpl-stat",
-                                          xplschema = "teleinfo.basic",
-                                          xplsource = "domogik-{0}.{1}".format(self.name, get_sanitized_hostname()),
-                                          data = {"adco" : "030928084432",
-                                                  "optarif" : "HC..",
-                                                  "isousc" : "45",
-                                                  "hchc" : "024073045",
-                                                  "hchp" : "030297217",
-                                                  "ptec" : "HP..",
-                                                  "iinst" : "001",
-                                                  "imax" : "048",
-                                                  "papp" : "00300",
-                                                  "hhphc" : "D",
-                                                  "motdetat" : "000000"},
+        data = {"adco" : "030928084432",
+                "optarif" : "hc..",
+                "isousc" : "45",
+                "hchc" : "024073045",
+                "hchp" : "030297217",
+                "ptec" : "hp..",
+                "iinst" : "001",
+                "imax" : "048",
+                "papp" : "00300",
+                "hhphc" : "d",
+                "motdetat" : "000000"}
+        self.assertTrue(self.wait_for_mq( device_id = device_id,
+                                          data = data,
                                           timeout = interval * 60))
         time.sleep(1)
-        print(u"Check that the values of the xPL message has been inserted in database")
+        print(u"Check that the values of the MQ message has been inserted in database")
         sensor = TestSensor(device_id, "adco")
-        self.assertTrue(sensor.get_last_value()[1] == self.xpl_data.data['adco'])
+        self.assertTrue(sensor.get_last_value()[1] == data['adco'])
         sensor = TestSensor(device_id, "optarif")
-        self.assertTrue(sensor.get_last_value()[1] == self.xpl_data.data['optarif'])
+        self.assertTrue(sensor.get_last_value()[1] == data['optarif'])
         sensor = TestSensor(device_id, "isousc")
-        self.assertTrue(sensor.get_last_value()[1] == self.xpl_data.data['isousc'])
+        self.assertTrue(sensor.get_last_value()[1] == data['isousc'])
         sensor = TestSensor(device_id, "hchc")
-        self.assertTrue(sensor.get_last_value()[1] == self.xpl_data.data['hchc'])
+        self.assertTrue(sensor.get_last_value()[1] == data['hchc'])
         sensor = TestSensor(device_id, "hchp")
-        self.assertTrue(sensor.get_last_value()[1] == self.xpl_data.data['hchp'])
+        self.assertTrue(sensor.get_last_value()[1] == data['hchp'])
         sensor = TestSensor(device_id, "ptec")
-        self.assertTrue(sensor.get_last_value()[1] == self.xpl_data.data['ptec'])
+        self.assertTrue(sensor.get_last_value()[1] == data['ptec'])
         sensor = TestSensor(device_id, "iinst")
-        self.assertTrue(sensor.get_last_value()[1] == self.xpl_data.data['iinst'])
+        self.assertTrue(sensor.get_last_value()[1] == data['iinst'])
         sensor = TestSensor(device_id, "imax")
-        self.assertTrue(sensor.get_last_value()[1] == self.xpl_data.data['imax'])
+        self.assertTrue(sensor.get_last_value()[1] == data['imax'])
         sensor = TestSensor(device_id, "papp")
-        self.assertTrue(sensor.get_last_value()[1] == self.xpl_data.data['papp'])
+        self.assertTrue(sensor.get_last_value()[1] == data['papp'])
         sensor = TestSensor(device_id, "hhphc")
-        self.assertTrue(sensor.get_last_value()[1] == self.xpl_data.data['hhphc'])
+        self.assertTrue(sensor.get_last_value()[1] == data['hhphc'])
         sensor = TestSensor(device_id, "motdetat")
-        self.assertTrue(sensor.get_last_value()[1] == self.xpl_data.data['motdetat'])
+        self.assertTrue(sensor.get_last_value()[1] == data['motdetat'])
 
 
 if __name__ == "__main__":
@@ -77,7 +76,7 @@ if __name__ == "__main__":
 
     ### global variables
     device = "/dev/teleinfo"
-    interval = 60
+    interval = 1
 
     # set up the xpl features
     xpl_plugin = XplPlugin(name = 'test',

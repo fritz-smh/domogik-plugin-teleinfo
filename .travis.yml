@@ -13,7 +13,7 @@ mysql:
   username: travis
   encoding: utf8
 env:
-  DMG_BRANCH=master
+  DMG_BRANCH=develop
   DMG_PLUGIN=teleinfo
 install:
   - cd ~

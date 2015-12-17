@@ -35,8 +35,8 @@ Implements
 @organization: Domogik
 """
 
-from domogik.xpl.common.xplmessage import XplMessage
-from domogik.xpl.common.plugin import XplPlugin
+from domogik.common.plugin import Plugin
+from domogikmq.message import MQMessage
 
 from domogik_packages.plugin_teleinfo.lib.teleinfo import Teleinfo, TeleinfoException
 import threading
@@ -44,14 +44,14 @@ import traceback
 import re
 
 
-class TeleinfoManager(XplPlugin):
+class TeleinfoManager(Plugin):
     """ Get teleinformation informations
     """
 
     def __init__(self):
         """ Init plugin
         """
-        XplPlugin.__init__(self, name='teleinfo')
+        Plugin.__init__(self, name='teleinfo')
 
         # check if the plugin is configured. If not, this will stop the plugin and log an error
         #if not self.check_configured():
@@ -59,6 +59,13 @@ class TeleinfoManager(XplPlugin):
 
         # get the devices list
         self.devices = self.get_device_list(quit_if_no_device = True)
+
+        # get the sensors id per device : 
+        # {device_id1 : {"sensor_name1" : sensor_id1,
+        #                "sensor_name2" : sensor_id2},
+        #  device_id2 : {"sensor_name1" : sensor_id1,
+        #                "sensor_name2" : sensor_id2}}
+        self.sensors = self.get_sensors(self.devices)
 
         # create a Teleinfo for each device
         threads = {}
@@ -68,9 +75,10 @@ class TeleinfoManager(XplPlugin):
             try:
                 # global device parameters
                 device = self.get_parameter(a_device, "device")
+                device_id = a_device["id"]
                 interval = self.get_parameter(a_device, "interval")
                 
-                teleinfo_list[device] = Teleinfo(self.log, self.send_xpl, self.get_stop(), device, interval, self.options.test_option)
+                teleinfo_list[device] = Teleinfo(self.log, self.send_data, self.get_stop(), device, device_id, interval, self.options.test_option)
                 teleinfo_list[device].open()
 
                 # start the teleinfo thread
@@ -98,19 +106,12 @@ class TeleinfoManager(XplPlugin):
         self.log.info(u"Plugin ready :)")
 
 
-
-    def send_xpl(self, frame):
-        ''' Send a frame from teleinfo device to xpl
-        @param frame : a dictionnary mapping teleinfo informations
-        '''
+    def send_data(self, device_id, frame):
+        """ Send the teleinfo sensors values over MQ
+        """
+        #print(frame)
         known_keys = []   # used to filter duplicate keys (it happens)
-        my_temp_message = XplMessage()
-        my_temp_message.set_type("xpl-stat")
-        if "ADIR1" in frame:
-            my_temp_message.set_schema("teleinfo.short")
-        else:
-            my_temp_message.set_schema("teleinfo.basic")
-
+        data = {}
         try:
             key = None
             val = None
@@ -118,18 +119,19 @@ class TeleinfoManager(XplPlugin):
                 key = re.sub('[^\w\.]','',entry["name"].lower())
                 val = re.sub('[^\w\.]','',entry["value"].lower())
                 if key not in known_keys:
-                    my_temp_message.add_data({ key : val })
+                    data[self.sensors[device_id][key]] = val
                     known_keys.append(key)
-            my_temp_message.add_data({"device": "teleinfo"})
         except :
-            self.log.error(u"Error while creating xpl message : {0} ; key : {1} ; val : {2}. Error is : {3}".format(my_temp_message, key, val, traceback.formar_exc()))
+            self.log.error(u"Error while creating MQ message : {0} ; key : {1} ; val : {2}. Error is : {3}".format(data, key, val, traceback.format_exc()))
+
+        print(data)
 
         try:
-            self.myxpl.send(my_temp_message)
-        except XplMessageError:
+            self._pub.send_event('client.sensor', data)
+        except:
             #We ignore the message if some values are not correct because it can happen with teleinfo ...
-            self.log.debug(u"Bad xpl message to send. This may happen due to some invalid teleinfo data. Xpl message is : {0}".format(str(my_temp_message)))
+            self.log.debug(u"Bad MQ message to send. This may happen due to some invalid teleinfo data. MQ data is : {0}".format(data))
             pass
-
+        
 if __name__ == "__main__":
     teleinfo = TeleinfoManager()

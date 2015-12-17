@@ -7,37 +7,16 @@ Timeout on sensors
 
 As all keys are not always returned by the teleinformation, a timeout has been defined only on the sensor for ADCO frame. This timeout has been set to 3 minutes. All other sensors timeouts are set to 0.
 
-xPL schema
-==========
+xPL
+===
 
-Two new xPL schema have been defined for this plugin:
+This plugin does not use xPl anymore since the release 1.1.
 
-* teleinfo.basic
-* teleinfo.short
+MQ
+==
 
-teleinfo.basic
---------------
+A **client.sensor** MQ message is sent with all the fields included in the teleinfo frame. Sample of a full frame : ::
 
-xpl-trig
-********
-
-There is no xpl-trig message for this schema
-
-xpl-cmnd
-********
-
-There is no xpl-trig message for this schema
-
-xpl-stat
-********
-
-.. note ::
-
-    You will find more informations about the schema keys in the :doc:`description of the teleinformation frame <teleinfo_informations>`.
-
-This is the classic message. Notice that the device identifier corresponds to the ADCO field: ::
-
-    teleinfo.basic
     {
     adco=...
     optarif=...
@@ -70,36 +49,5 @@ This is the classic message. Notice that the device identifier corresponds to th
     [imax2=...]
     [imax3=...]
     [pmax=...]
-    }
-
-teleinfo.short
---------------
-
-The **teleinfo.short** schema is sent when the max intensity is reached on a 3 phasis installation.
-
-xpl-trig
-********
-
-There is no xpl-trig message for this schema
-
-xpl-cmnd
-********
-
-There is no xpl-trig message for this schema
-
-xpl-stat
-********
-
-This is the message sent when for a 3 phasis installation, the max intensity is reached. Notice that the device identifier corresponds to the ADCO field: ::
-
-    teleinfo.short
-    {
-    adco=...
-    adir1=...
-    adir2=...
-    adir3=...
-    iinst1=...
-    iinst2=...
-    iinst3=...
     }
 

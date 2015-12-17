@@ -6,6 +6,7 @@ Changelog
 ===
 
 * Improve logs for UTF8 (minor update)
+* Remove xPL parts to use only Domogik MQ (devices need to be recreated)
 
 1.0
 ===

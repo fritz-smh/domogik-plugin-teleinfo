@@ -27,7 +27,7 @@ Interesting links about teleinfo :
 Dependencies
 ============
 
-* Python dependancy : pyserial
+* Python dependancy : pyserial (installed with Domogik)
 
 Plugin configuration
 ====================

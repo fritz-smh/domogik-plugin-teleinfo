@@ -11,10 +11,10 @@
             }
         ],
         "description": "Grab teleinformation informations from your EDF electric counter",
-        "domogik_min_version": "0.4.0",
+        "domogik_min_version": "0.5.0",
         "name": "teleinfo",
         "type": "plugin",
-        "version": "1.1"
+        "version": "1.2"
     },
     "configuration": [],
     "device_types": {
